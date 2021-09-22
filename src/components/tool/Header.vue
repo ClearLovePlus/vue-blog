@@ -3,17 +3,17 @@
     <h3>欢迎来HqpHub的博客</h3>
     <div class="block">
       <el-avatar :size="50" :src="user.avatar"></el-avatar>
-      <div>{{ user.username }}</div>
+      <div>{{ user.username}}</div>
     </div>
     <div class="maction">
-      <el-link href="/blogs">主页</el-link>
+      <el-link href="/login">主页</el-link>
       <el-divider direction="vertical"></el-divider>
       <span>
           <el-link type="success" href="/blog/add" :disabled="!hasLogin">发表文章</el-link>
         </span>
       <el-divider direction="vertical"></el-divider>
       <span v-show="!hasLogin">
-          <el-link type="primary" href="/login">登陆</el-link>
+          <el-link type="primary" @click="login">登陆</el-link>
         </span>
       <span v-show="hasLogin">
           <el-link type="danger" @click="logout">退出</el-link>
@@ -44,11 +44,15 @@ export default {
         _this.$store.commit('REMOVE_INFO')
         _this.$router.push('/login')
       })
+    },
+    login () {
+      const _this = this
+      _this.$router.push('/login')
     }
   },
   created () {
-    if (this.$store.getters.getUser.username) {
-      this.user.username = this.$store.getters.getUser.username
+    if (this.$store.getters.getUser.userName) {
+      this.user.username = this.$store.getters.getUser.userName
       this.user.avatar = this.$store.getters.getUser.avatar
       this.hasLogin = true
     }

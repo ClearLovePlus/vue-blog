@@ -47,6 +47,10 @@ export default {
     }
   },
   created () {
+    const token = localStorage.getItem('token')
+    if (token) {
+      this.$router.push({path: '/blogs'})
+    }
   },
   methods: {
     doLogin () {
@@ -64,12 +68,13 @@ export default {
             const token = res.data.data.token
             _this.$store.commit('SET_TOKEN', token)
             _this.$store.commit('SET_USERINFO', res.data.data)
+            console.log(res.data.data)
             this.$message({
               duration: 1000,
               message: res.data.message,
               type: 'success'
             })
-            this.$router.push({path: '/main'})
+            this.$router.push({path: '/blogs'})
           } else {
             this.$message({
               duration: 1000,

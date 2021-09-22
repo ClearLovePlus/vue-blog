@@ -6,10 +6,13 @@ import Login from '../components/Login'
 import Register2 from '../components/Register2'
 import main from '../components/main'
 import Header from '../components/tool/Header'
-
+import BlogDetail from '../components/blog/BlogDetail'
+import BlogEdit from '../components/blog/BlogEdit'
+import BlogBoard from '../components/blog/BlogBoard'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -28,11 +31,46 @@ export default new Router({
       }
     },
     {
+      path: '/blog/add',
+      name: 'BlogAdd',
+      component: BlogEdit,
+      meta: {
+        requireAuth: true,
+        title: '新增blog'
+      }
+    },
+    {
+      path: '/blogs',
+      name: 'BlogBoard',
+      component: BlogBoard,
+      meta: {
+        title: 'blog概览'
+      }
+    },
+    {
+      path: '/getArticleByArticleId/:blogId',
+      name: 'BlogDetail',
+      component: BlogDetail,
+      meta: {
+        requireAuth: true,
+        title: 'blog详情'
+      }
+    },
+    {
       path: '/login',
       name: 'Login',
       component: Login,
       meta: {
         title: '统一流程平台--登录'
+      }
+    },
+    {
+      path: '/getArticleByArticleId/:blogId',
+      name: 'BlogEdit',
+      component: BlogEdit,
+      meta: {
+        requireAuth: true,
+        title: '编辑blog'
       }
     },
     {
@@ -53,7 +91,8 @@ export default new Router({
           component: () => import('../components/index'),
           name: 'index',
           meta: {
-            title: '统一流程平台--首页'
+            title: '统一流程平台--首页',
+            requireAuth: true
           }
         },
         {
@@ -61,7 +100,8 @@ export default new Router({
           component: () => import('../components/flow/model'),
           name: 'model',
           meta: {
-            title: '流程管理--模型部署'
+            title: '流程管理--模型部署',
+            requireAuth: true
           }
         },
         {
@@ -69,7 +109,8 @@ export default new Router({
           component: () => import('../components/flow/deploy'),
           name: 'deploy',
           meta: {
-            title: '流程管理--部署管理'
+            title: '流程管理--部署管理',
+            requireAuth: true
           }
         },
         {
@@ -77,7 +118,8 @@ export default new Router({
           component: () => import('../components/flow/done'),
           name: 'done',
           meta: {
-            title: '流程管理--已办任务'
+            title: '流程管理--已办任务',
+            requireAuth: true
           }
         },
         {
@@ -85,7 +127,8 @@ export default new Router({
           component: () => import('../components/flow/belongToMe'),
           name: 'belongToMe',
           meta: {
-            title: '流程管理--我发起的'
+            title: '流程管理--我发起的',
+            requireAuth: true
           }
         },
         {
@@ -93,7 +136,8 @@ export default new Router({
           component: () => import('../components/flow/monitor'),
           name: 'monitor',
           meta: {
-            title: '流程管理--流程监控'
+            title: '流程管理--流程监控',
+            requireAuth: true
           }
         },
         {
@@ -101,7 +145,8 @@ export default new Router({
           component: () => import('../components/flow/todo'),
           name: 'todo',
           meta: {
-            title: '流程管理--待办任务'
+            title: '流程管理--待办任务',
+            requireAuth: true
           }
         },
         {
@@ -109,7 +154,8 @@ export default new Router({
           component: () => import('../components/permission/role'),
           name: 'role',
           meta: {
-            title: '权限管理--角色管理'
+            title: '权限管理--角色管理',
+            requireAuth: true
           }
         },
         {
@@ -117,7 +163,8 @@ export default new Router({
           component: () => import('../components/permission/user'),
           name: 'user',
           meta: {
-            title: '权限管理--用户管理'
+            title: '权限管理--用户管理',
+            requireAuth: true
           }
         },
         {
@@ -125,7 +172,8 @@ export default new Router({
           component: () => import('../components/project/projectAdd'),
           name: 'projectAdd',
           meta: {
-            title: '项目管理--项目等级'
+            title: '项目管理--项目等级',
+            requireAuth: true
           }
         },
         {
@@ -133,7 +181,8 @@ export default new Router({
           component: () => import('../components/project/projectOther'),
           name: 'projectOther',
           meta: {
-            title: '项目管理--项目其他'
+            title: '项目管理--项目其他',
+            requireAuth: true
           }
         },
         {
@@ -141,7 +190,8 @@ export default new Router({
           component: () => import('../components/user/personalAuditor'),
           name: 'personalAuditor',
           meta: {
-            title: '员工管理--个人考勤'
+            title: '员工管理--个人考勤',
+            requireAuth: true
           }
         },
         {
@@ -149,7 +199,8 @@ export default new Router({
           component: () => import('../components/user/personalDocument'),
           name: 'personalDocument',
           meta: {
-            title: '员工管理--个人档案'
+            title: '员工管理--个人档案',
+            requireAuth: true
           }
         },
         {
@@ -157,7 +208,8 @@ export default new Router({
           component: () => import('../components/user/personalSalary'),
           name: 'personalSalary',
           meta: {
-            title: '员工管理--劳资情况'
+            title: '员工管理--劳资情况',
+            requireAuth: true
           }
         },
         {
@@ -165,7 +217,8 @@ export default new Router({
           component: () => import('../components/user/personalEducation'),
           name: 'personalEducation',
           meta: {
-            title: '员工管理--培训详情'
+            title: '员工管理--培训详情',
+            requireAuth: true
           }
         }
       ],
