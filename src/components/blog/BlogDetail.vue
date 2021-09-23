@@ -45,7 +45,7 @@ export default {
       var md = new MardownIt()
       var result = md.render(blog.content)
       _this.blog.content = result
-      _this.ownBlog = (blog.userId === _this.$store.getters.getUser.id)
+      _this.ownBlog = (blog.authorId === _this.$store.getters.getUser.userId)
     })
   }
 }

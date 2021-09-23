@@ -12,16 +12,12 @@ axios.interceptors.request.use(config => {
 
 axios.interceptors.response.use(response => {
   let res = response.data
-  console.log('=================')
-  console.log(res)
-  console.log('=================')
-
   if (res.status === 200) {
     return response
   } else {
-    this.$message({
+    Element.Message.error({
       duration: 1000,
-      message: '请求报错啦',
+      message: res.message,
       type: 'error'
     })
     return Promise.reject(response.data.message)

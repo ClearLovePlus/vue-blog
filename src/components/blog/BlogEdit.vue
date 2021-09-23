@@ -5,8 +5,11 @@
     <div class="m-content">
 
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="标题" prop="id" hidden>
+        <el-form-item label="文章自增主键" prop="id" hidden>
           <el-input v-model="ruleForm.id"></el-input>
+        </el-form-item>
+        <el-form-item label="文章编号" prop="id" hidden>
+          <el-input v-model="ruleForm.articleId"></el-input>
         </el-form-item>
         <el-form-item label="标题" prop="title">
           <el-input v-model="ruleForm.articletitle"></el-input>
@@ -17,9 +20,8 @@
         </el-form-item>
 
         <el-form-item label="内容" prop="content">
-          <mavon-editor v-model="ruleForm.articlecontent"></mavon-editor>
+          <mavon-editor v-model="ruleForm.articlecontent" ref="md" @imgAdd="$imgAdd" ishljs="true"></mavon-editor>
         </el-form-item>
-
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
           <el-button @click="resetForm('ruleForm')">重置</el-button>
@@ -40,9 +42,10 @@ export default {
     return {
       ruleForm: {
         id: '',
-        articletitle: 'test',
-        articletabloid: 'tets',
-        articlecontent: 'tes'
+        articletitle: '',
+        articletabloid: '',
+        articlecontent: '',
+        articleId: ''
       },
       rules: {
         articletitle: [
@@ -59,11 +62,41 @@ export default {
     }
   },
   methods: {
+    $imgAdd (pos, $file) {
+      let formData = new FormData()
+      formData.append('files', $file)
+      formData.append('type', 1)
+      this.$axios.post('/file/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((res) => {
+        let _res = res.data
+        if (_res.status === 200) {
+          this.$refs.md.$img2Url(pos, 'http://localhost:8095/file/download?fileName=' + _res.data)
+        } else {
+          this.$message({
+            duration: 1000,
+            message: _res.message,
+            type: 'error'
+          })
+        }
+      })
+    },
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           const _this = this
-          this.$axios.post('/article/publishArticle', this.ruleForm, {
+          this.$axios.post('/article/publishArticle', {
+            id: _this.ruleForm.id,
+            articletitle: _this.ruleForm.articletitle,
+            articletabloid: _this.ruleForm.articletabloid,
+            articlecontent: _this.ruleForm.articlecontent,
+            author: this.$store.getters.getUser.userName,
+            authorId: this.$store.getters.getUser.userId,
+            token: localStorage.getItem('token'),
+            articleid: _this.ruleForm.articleId
+          }, {
             headers: {
               'Authorization': localStorage.getItem('token')
             }
@@ -97,6 +130,7 @@ export default {
         _this.ruleForm.articletitle = blog.title
         _this.ruleForm.articletabloid = blog.description
         _this.ruleForm.articlecontent = blog.content
+        _this.ruleForm.articleId = blog.articleId
       })
     }
   }

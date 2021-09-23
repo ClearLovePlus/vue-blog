@@ -13,7 +13,7 @@
         </span>
       <el-divider direction="vertical"></el-divider>
       <span v-show="!hasLogin">
-          <el-link type="primary" @click="login">登陆</el-link>
+          <el-link type="primary" @click="login">登录</el-link>
         </span>
       <span v-show="hasLogin">
           <el-link type="danger" @click="logout">退出</el-link>
@@ -53,7 +53,11 @@ export default {
   created () {
     if (this.$store.getters.getUser.userName) {
       this.user.username = this.$store.getters.getUser.userName
-      this.user.avatar = this.$store.getters.getUser.avatar
+      if (this.$store.getters.getUser.avatar) {
+        this.user.avatar = this.$store.getters.getUser.avatar
+      } else {
+        this.user.avatar = 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
+      }
       this.hasLogin = true
     }
   }

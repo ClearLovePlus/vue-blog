@@ -47,7 +47,13 @@ export default {
   methods: {
     page (currentPage) {
       const _this = this
-      _this.$axios.get('/article/getAllUserArticle?currentPage=' + currentPage).then(res => {
+      let url = ''
+      if (localStorage.getItem('token')) {
+        url = '/article/getAllUserArticle?currentPage=' + currentPage + '&userId=' + _this.$store.getters.getUser.userId
+      } else {
+        url = '/article/getAllUserArticle?currentPage=' + currentPage
+      }
+      _this.$axios.get(url).then(res => {
         console.log(res)
         _this.blogs = res.data.data.data
         _this.currentPage = res.data.data.currentPage
