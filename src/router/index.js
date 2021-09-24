@@ -52,7 +52,6 @@ export default new Router({
       name: 'BlogDetail',
       component: BlogDetail,
       meta: {
-        requireAuth: true,
         title: 'blog详情'
       }
     },

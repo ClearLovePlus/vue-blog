@@ -48,8 +48,17 @@ export default {
   },
   created () {
     const token = localStorage.getItem('token')
+    // 加一层登录态判断
     if (token) {
-      this.$router.push({path: '/blogs'})
+      this.$axios.get('/login/loginStatus?token=' + token).then(res => {
+        if (res.data.data === true) {
+          this.$router.push({path: '/blogs'})
+        } else {
+          this.$router.push({path: '/login'})
+        }
+      })
+    } else {
+      this.$router.push({path: '/login'})
     }
   },
   methods: {

@@ -43,8 +43,7 @@ export default {
       _this.blog.title = blog.title
       var MardownIt = require('markdown-it')
       var md = new MardownIt()
-      var result = md.render(blog.content)
-      _this.blog.content = result
+      _this.blog.content = md.render(blog.content)
       _this.ownBlog = (blog.authorId === _this.$store.getters.getUser.userId)
     })
   }

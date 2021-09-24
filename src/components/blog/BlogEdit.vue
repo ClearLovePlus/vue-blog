@@ -120,18 +120,40 @@ export default {
     }
   },
   created () {
-    const blogId = this.$route.params.blogId
-    console.log(blogId)
-    const _this = this
-    if (blogId) {
-      this.$axios.get('/article/getArticleByArticleId/' + blogId).then(res => {
-        const blog = res.data.data
-        _this.ruleForm.id = blog.id
-        _this.ruleForm.articletitle = blog.title
-        _this.ruleForm.articletabloid = blog.description
-        _this.ruleForm.articlecontent = blog.content
-        _this.ruleForm.articleId = blog.articleId
+    const token = localStorage.getItem('token')
+    // 加一层登录态判断
+    if (token) {
+      this.$axios.get('/login/loginStatus?token=' + token).then(res => {
+        if (res.data.data === true) {
+          const blogId = this.$route.params.blogId
+          console.log(blogId)
+          const _this = this
+          if (blogId) {
+            this.$axios.get('/article/getArticleByArticleId/' + blogId).then(res => {
+              const blog = res.data.data
+              _this.ruleForm.id = blog.id
+              _this.ruleForm.articletitle = blog.title
+              _this.ruleForm.articletabloid = blog.description
+              _this.ruleForm.articlecontent = blog.content
+              _this.ruleForm.articleId = blog.articleId
+            })
+          }
+        } else {
+          this.$message({
+            type: 'error',
+            message: '登录态已失效，请重新登录',
+            duration: 1000
+          })
+          this.$router.push({path: '/login'})
+        }
       })
+    } else {
+      this.$message({
+        type: 'error',
+        message: '登录态已失效，请重新登录',
+        duration: 1000
+      })
+      this.$router.push({path: '/login'})
     }
   }
 }
