@@ -1,33 +1,32 @@
 <template>
-  <div class="mcontaner">
-    <Header></Header>
+    <div class="mcontaner">
+      <Header></Header>
 
-    <div class="block">
-      <el-timeline>
-        <el-timeline-item :timestamp="blog.creatDate" placement="top" v-for="blog in blogs" v-bind:key="blog.id">
-          <el-card>
-            <h4>
-              <router-link :to="{name: 'BlogDetail', params: {blogId: blog.articleId}}">
-                {{blog.title}}
-              </router-link>
-            </h4>
-            <p>{{blog.description}}</p>
-          </el-card>
-        </el-timeline-item>
-      </el-timeline>
+      <div class="block">
+        <el-timeline>
+          <el-timeline-item :timestamp="blog.creatDate" placement="top" v-for="blog in blogs" v-bind:key="blog.id">
+            <el-card>
+              <h4>
+                <router-link :to="{name: 'BlogDetail', params: {blogId: blog.articleId}}">
+                  {{blog.title}}
+                </router-link>
+              </h4>
+              <p>{{blog.description}}</p>
+            </el-card>
+          </el-timeline-item>
+        </el-timeline>
 
-      <el-pagination class="mpage"
-                     background
-                     layout="prev, pager, next"
-                     :current-page="currentPage"
-                     :page-size="pageSize"
-                     :total="total"
-                     @current-change=page>
-      </el-pagination>
+        <el-pagination class="mpage"
+                       background
+                       layout="prev, pager, next"
+                       :current-page="currentPage"
+                       :page-size="pageSize"
+                       :total="total"
+                       @current-change=page>
+        </el-pagination>
 
-    </div>
-
-  </div>
+      </div>
+</div>
 </template>
 
 <script>

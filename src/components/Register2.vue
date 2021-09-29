@@ -2,7 +2,7 @@
   <div class="register">
     <div class="register-box">
       <div class="register-logo">
-        <img src="../assets/img/register_logo.png" class="register-logo-img">
+        <img src="../assets/img/pu.png" class="register-logo-img">
       </div>
 
       <el-form ref="register-form" :model="user" :rules="rules" label-position="center">
@@ -86,7 +86,7 @@ export default {
 .register-logo {
   position: absolute;
   margin-top: 30px;
-  margin-left: 80px;
+  margin-left: 200px;
 }
 
 .el-form {

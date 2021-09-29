@@ -1,7 +1,13 @@
 <template>
-  <div>
+  <div class="father">
+    <div class="left-nav">
+      <a>左边侧边栏用来放目录</a>
+    </div>
+    <div class="right-nav">
+      <a>右边栏可以自己玩</a>
+    </div>
+  <div class="main-content">
     <Header></Header>
-
     <div class="mblog">
       <h2> {{ blog.title }}</h2>
       <el-link icon="el-icon-edit" v-if="ownBlog">
@@ -11,9 +17,8 @@
       </el-link>
       <el-divider></el-divider>
       <div class="markdown-body" v-html="blog.content"></div>
-
     </div>
-
+  </div>
   </div>
 </template>
 
@@ -56,5 +61,37 @@ export default {
   width: 100%;
   min-height: 700px;
   padding: 20px 15px;
+}
+h1,h2 {
+  text-align: center;
+}
+.father{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+.main-content{
+  position: absolute;
+  width: 50%;
+  left: 25%;
+}
+.left-nav{
+  position: absolute;
+  background: #409EEF;
+  width: 15%;
+  height: 75%;
+  margin-top: 180px;
+  left: 9%;
+}
+.right-nav{
+  position: absolute;
+  background: #409EEF;
+  width: 15%;
+  height: 75%;
+  margin-top: 180px;
+  right: 7.5%;
 }
 </style>

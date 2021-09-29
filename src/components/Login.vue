@@ -1,8 +1,9 @@
 <template>
-  <div class="login">
+  <div class="login" :style="login">
     <div class="login-wrap">
+
       <div class="login-logo">
-        <img src="../assets/img/register_logo.png">
+        <img src="../assets/img/pu.png">
       </div>
       <el-form ref="register-form" :model="user" :rules="rules" label-position="center">
         <el-form-item prop="userName">
@@ -14,6 +15,7 @@
         <el-form-item>
           <el-button type="primary" @click="doLogin">登录</el-button>
         </el-form-item>
+         <a>没有账号？</a><a href="/register2">立即注册</a>
         <el-form-item>
           <el-checkbox> 我已经阅读并同意
             <a href="https://www.hupu.com/policies/terms" data-title=用户协议 target="_blank">用户协议</a>及<a
@@ -30,6 +32,9 @@ export default {
   name: 'login',
   data () {
     return {
+      login: {
+        backgroundImage: 'url( ' + require('../assets/img/register.png') + ')'
+      },
       user: {
         phone: '',
         password: ''
@@ -99,7 +104,6 @@ export default {
 </script>
 <style scoped>
 .login {
-  background: url('../assets/img/register.png') center center no-repeat;
   background-size: 100% 100%;
   position: fixed;
   width: 100%;
@@ -126,7 +130,7 @@ export default {
 .login-logo {
   position: absolute;
   margin-top: 30px;
-  margin-left: 80px;
+  margin-left: 200px;
 }
 
 .el-form {

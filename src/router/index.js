@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '../components/HelloWorld'
 import Login from '../components/Login'
 
 import Register2 from '../components/Register2'
@@ -9,6 +8,7 @@ import Header from '../components/tool/Header'
 import BlogDetail from '../components/blog/BlogDetail'
 import BlogEdit from '../components/blog/BlogEdit'
 import BlogBoard from '../components/blog/BlogBoard'
+import Comment from '../components/tool/Comment'
 Vue.use(Router)
 
 export default new Router({
@@ -16,10 +16,10 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
+      name: 'BlogBoard',
+      component: BlogBoard,
       meta: {
-        title: '测试'
+        title: '主页'
       }
     },
     {
@@ -28,6 +28,14 @@ export default new Router({
       component: Header,
       meta: {
         title: '头部测试'
+      }
+    },
+    {
+      path: '/comment',
+      name: 'Comment',
+      component: Comment,
+      meta: {
+        title: '评论测试'
       }
     },
     {
