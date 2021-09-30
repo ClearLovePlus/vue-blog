@@ -1,4 +1,6 @@
 <template>
+  <div class="main-content">
+    <head-all></head-all>
     <div class="mcontaner">
       <Header></Header>
 
@@ -8,10 +10,10 @@
             <el-card>
               <h4>
                 <router-link :to="{name: 'BlogDetail', params: {blogId: blog.articleId}}">
-                  {{blog.title}}
+                  {{ blog.title }}
                 </router-link>
               </h4>
-              <p>{{blog.description}}</p>
+              <p>{{ blog.description }}</p>
             </el-card>
           </el-timeline-item>
         </el-timeline>
@@ -26,15 +28,17 @@
         </el-pagination>
 
       </div>
-</div>
+    </div>
+  </div>
 </template>
 
 <script>
 import Header from '../tool/Header'
+import HeadAll from '../HeadAll'
 
 export default {
   name: 'BlogBoard',
-  components: {Header},
+  components: {Header, HeadAll},
   data () {
     return {
       blogs: {},
@@ -71,5 +75,12 @@ export default {
 .mpage {
   margin: 0 auto;
   text-align: center;
+}
+.mcontaner{
+  position: absolute;
+  width: 70%;
+  left: 15%;
+  right: 15%;
+  top: 11%;
 }
 </style>

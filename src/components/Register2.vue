@@ -2,7 +2,7 @@
   <div class="register">
     <div class="register-box">
       <div class="register-logo">
-        <img src="../assets/img/pu.png" class="register-logo-img">
+        <img src="../assets/img/puBlue.png" class="register-logo-img">
       </div>
 
       <el-form ref="register-form" :model="user" :rules="rules" label-position="center">
@@ -112,6 +112,6 @@ export default {
 
 .el-button {
   width: 330px;
-  background-color: #e42837;
+  background-color: #409EEF;
 }
 </style>

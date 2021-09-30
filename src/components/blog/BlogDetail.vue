@@ -1,11 +1,6 @@
 <template>
   <div class="father">
-    <div class="left-nav">
-      <a>左边侧边栏用来放目录</a>
-    </div>
-    <div class="right-nav">
-      <a>右边栏可以自己玩</a>
-    </div>
+    <headAll></headAll>
   <div class="main-content">
     <Header></Header>
     <div class="mblog">
@@ -25,9 +20,10 @@
 <script>
 import 'github-markdown-css'
 import Header from '../tool/Header'
+import HeadAll from '../HeadAll'
 export default {
   name: 'BlogDetail',
-  components: {Header},
+  components: {HeadAll, Header},
   data () {
     return {
       blog: {
@@ -75,23 +71,10 @@ h1,h2 {
 }
 .main-content{
   position: absolute;
-  width: 50%;
-  left: 25%;
+  width: 70%;
+  left: 15%;
+  right: 15%;
+  top: 11%;
 }
-.left-nav{
-  position: absolute;
-  background: #409EEF;
-  width: 15%;
-  height: 75%;
-  margin-top: 180px;
-  left: 9%;
-}
-.right-nav{
-  position: absolute;
-  background: #409EEF;
-  width: 15%;
-  height: 75%;
-  margin-top: 180px;
-  right: 7.5%;
-}
+
 </style>

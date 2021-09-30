@@ -1,7 +1,8 @@
 <template>
   <div>
+    <headAll></headAll>
+    <div class="main-content">
     <Header></Header>
-
     <div class="m-content">
 
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
@@ -31,13 +32,15 @@
     </div>
 
   </div>
+  </div>
 </template>
 
 <script>
 import Header from '../tool/Header'
+import HeadAll from '../HeadAll'
 export default {
   name: 'BlogEdit',
-  components: {Header},
+  components: {Header, HeadAll},
   data () {
     return {
       ruleForm: {
@@ -160,7 +163,15 @@ export default {
 </script>
 
 <style scoped>
+.main-content{
+  position: absolute;
+  width: 70%;
+  left: 15%;
+  right: 15%;
+  top: 11%;
+}
 .m-content {
   text-align: center;
+  height: 100%;
 }
 </style>

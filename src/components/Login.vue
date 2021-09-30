@@ -3,7 +3,7 @@
     <div class="login-wrap">
 
       <div class="login-logo">
-        <img src="../assets/img/pu.png">
+        <img src="../assets/img/puBlue.png">
       </div>
       <el-form ref="register-form" :model="user" :rules="rules" label-position="center">
         <el-form-item prop="userName">
@@ -156,7 +156,7 @@ export default {
 
 .el-button {
   width: 330px;
-  background-color: #e42837;
+  background-color: #409EEF;
 }
 
 </style>

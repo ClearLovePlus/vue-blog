@@ -4,7 +4,7 @@ import Login from '../components/Login'
 
 import Register2 from '../components/Register2'
 import main from '../components/main'
-import Header from '../components/tool/Header'
+import Head from '../components/HeadAll'
 import BlogDetail from '../components/blog/BlogDetail'
 import BlogEdit from '../components/blog/BlogEdit'
 import BlogBoard from '../components/blog/BlogBoard'
@@ -25,7 +25,7 @@ export default new Router({
     {
       path: '/head',
       name: 'head',
-      component: Header,
+      component: Head,
       meta: {
         title: '头部测试'
       }

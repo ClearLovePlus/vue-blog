@@ -1,6 +1,5 @@
 <template>
   <div class="m-content">
-    <h3>欢迎来HqpHub的博客</h3>
     <div class="block">
       <el-avatar :size="50" :src="user.avatar"></el-avatar>
       <div>{{ user.username}}</div>
