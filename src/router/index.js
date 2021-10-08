@@ -8,7 +8,6 @@ import Head from '../components/HeadAll'
 import BlogDetail from '../components/blog/BlogDetail'
 import BlogEdit from '../components/blog/BlogEdit'
 import BlogBoard from '../components/blog/BlogBoard'
-import Comment from '../components/tool/Comment'
 Vue.use(Router)
 
 export default new Router({
@@ -28,14 +27,6 @@ export default new Router({
       component: Head,
       meta: {
         title: '头部测试'
-      }
-    },
-    {
-      path: '/comment',
-      name: 'Comment',
-      component: Comment,
-      meta: {
-        title: '评论测试'
       }
     },
     {

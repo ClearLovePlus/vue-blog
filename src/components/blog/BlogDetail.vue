@@ -13,6 +13,18 @@
       <el-divider></el-divider>
       <div class="markdown-body" v-html="blog.content"></div>
     </div>
+    <div class="comment-input">
+      <el-input
+        type="textarea"
+        :rows="5"
+        placeholder="写下你的评论"
+        v-model="textarea">
+      </el-input>
+      <div class="submit">
+        <el-button class="btn" type="success" round @click="addComment">发布</el-button>
+      </div>
+    </div>
+    <comment class="comment" :comments="commentData" ></comment>
   </div>
   </div>
 </template>
@@ -21,9 +33,10 @@
 import 'github-markdown-css'
 import Header from '../tool/Header'
 import HeadAll from '../HeadAll'
+import comment from '../comment'
 export default {
   name: 'BlogDetail',
-  components: {HeadAll, Header},
+  components: {HeadAll, Header, comment},
   data () {
     return {
       blog: {
@@ -31,7 +44,9 @@ export default {
         title: '',
         content: ''
       },
-      ownBlog: false
+      ownBlog: false,
+      textarea: '',
+      commentData: []
     }
   },
   created () {
@@ -47,6 +62,37 @@ export default {
       _this.blog.content = md.render(blog.content)
       _this.ownBlog = (blog.authorId === _this.$store.getters.getUser.userId)
     })
+    this.$axios.get('/comment/allComments?articleId=' + blogId).then(res => {
+      if (res.status === 200) {
+        this.commentData = res.data.data
+      }
+    })
+  },
+  methods: {
+    addComment () {
+      this.$axios.post('/comment/addComments', {
+        articleId: this.$route.params.blogId,
+        content: this.textarea,
+        fromId: this.$store.getters.getUser.userId
+      }).then(res => {
+        if (res.status === 200) {
+          if (res.data.data === true) {
+            this.$message({
+              duration: 1000,
+              message: '评论成功',
+              type: 'success'
+            })
+            this.$router.go(0)
+          }
+        } else {
+          this.$message({
+            duration: 1000,
+            message: '系统繁忙，稍后再试试吧>_<',
+            type: 'error'
+          })
+        }
+      })
+    }
   }
 }
 </script>
@@ -76,5 +122,12 @@ h1,h2 {
   right: 15%;
   top: 11%;
 }
-
+.comment-input{
+  margin-top: 10px;
+}
+.submit{
+  position: absolute;
+  margin-top: 10px;
+  left: 90%;
+}
 </style>

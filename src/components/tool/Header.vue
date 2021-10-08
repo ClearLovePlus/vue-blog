@@ -39,9 +39,16 @@ export default {
   methods: {
     logout () {
       const _this = this
-      this.$axios.get('http://localhost:8095/logout/out?userId=' + this.$store.getters.getUser.userId).then((res) => {
-        _this.$store.commit('REMOVE_INFO')
-        _this.$router.push('/login')
+      this.$axios.get('logout/out?userId=' + this.$store.getters.getUser.userId).then((res) => {
+        if (res.status === 200) {
+          _this.$store.commit('REMOVE_INFO')
+          this.$message({
+            duration: 1000,
+            message: '退出成功',
+            type: 'success'
+          })
+          _this.$router.push('/login')
+        }
       })
     },
     login () {
