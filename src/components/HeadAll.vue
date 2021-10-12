@@ -9,7 +9,7 @@
         <el-menu-item index="1"><a href="/blogs">首 页</a></el-menu-item>
         <el-menu-item index="2"><a href="/blogs">系 列</a></el-menu-item>
         <el-menu-item index="3"><a href="/blogs">教 程</a></el-menu-item>
-        <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">友 链</a></el-menu-item>
+        <el-menu-item index="4"><a href="https://www.ele.me">友 链</a></el-menu-item>
       </el-menu>
     </div>
     <div class="search-div">

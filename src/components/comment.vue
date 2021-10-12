@@ -59,9 +59,6 @@
 </template>
 
 <script>
-
-import Vue from 'vue'
-
 export default {
   props: {
     comments: {
@@ -82,17 +79,24 @@ export default {
      * 点赞
      */
     likeClick (item) {
-      if (item.isLike === null) {
-        Vue.$set(item, 'isLike', true)
-        item.likeNum++
-      } else {
-        if (item.isLike) {
-          item.likeNum--
+      this.$axios.get('/comment/addLikes?commentId=' + item.id).then(res => {
+        if (res.status === 200) {
+          if (res.data.data === true) {
+            this.$message({
+              duration: 1000,
+              message: '点赞成功',
+              type: 'success'
+            })
+            this.$router.go(0)
+          }
         } else {
-          item.likeNum++
+          this.$message({
+            duration: 1000,
+            message: '系统繁忙，稍后再试试吧>_<',
+            type: 'error'
+          })
         }
-        item.isLike = !item.isLike
-      }
+      })
     },
 
     /**
@@ -106,6 +110,14 @@ export default {
      * 提交评论
      */
     commitComment (item) {
+      if (!this.$store.getters.getUser) {
+        this.$message({
+          duration: 1000,
+          message: '请重新登录',
+          type: 'error'
+        })
+        this.$router.push({path: '/login'})
+      }
       this.$axios.post('/comment/addComments', {
         articleId: this.$route.params.blogId,
         content: this.inputComment,

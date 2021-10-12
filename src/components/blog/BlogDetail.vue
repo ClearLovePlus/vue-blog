@@ -70,6 +70,14 @@ export default {
   },
   methods: {
     addComment () {
+      if (!this.$store.getters.getUser) {
+        this.$message({
+          duration: 1000,
+          message: '请重新登录',
+          type: 'error'
+        })
+        this.$router.push({path: '/login'})
+      }
       this.$axios.post('/comment/addComments', {
         articleId: this.$route.params.blogId,
         content: this.textarea,
