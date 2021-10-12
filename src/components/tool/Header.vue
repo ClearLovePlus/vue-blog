@@ -57,7 +57,7 @@ export default {
     }
   },
   created () {
-    if (this.$store.getters.getUser.userName) {
+    if (this.$store.getters.getUser) {
       this.user.username = this.$store.getters.getUser.userName
       if (this.$store.getters.getUser.avatar) {
         this.user.avatar = this.$store.getters.getUser.avatar
