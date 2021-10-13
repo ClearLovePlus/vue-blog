@@ -7,7 +7,7 @@
 
       <el-form ref="register-form" :model="user" :rules="rules" label-position="center">
         <el-form-item prop="userName">
-          <el-input v-model="user.name" placeholder="请输入用户名" autoComplete="off" ></el-input>
+          <el-input v-model="user.userName" placeholder="请输入用户名" autoComplete="off" ></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input v-model="user.password" placeholder="请输入密码" type="password" autoComplete="off"></el-input>
@@ -16,7 +16,7 @@
           <el-input v-model="user.mobile" placeholder="请输入手机号" autoComplete="off"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary">注册</el-button>
+          <el-button type="primary" @click="doRegister">注册</el-button>
         </el-form-item>
         <el-form-item>
           <el-checkbox> 我已经阅读并同意
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Register2',
   data () {
@@ -52,6 +53,33 @@ export default {
           {required: true, message: '请输入手机号', trigger: 'blur'}
         ]
       }
+    }
+  },
+  methods: {
+    doRegister () {
+      this.$axios.post('/register/userName', {
+        phoneNum: this.user.mobile,
+        password: this.user.password,
+        userName: this.user.userName
+      }).then((res) => {
+        if (res.data.status === 200) {
+          const token = res.data.data.token
+          this.$store.commit('SET_TOKEN', token)
+          this.$store.commit('SET_USERINFO', res.data.data)
+          this.$message({
+            duration: 1000,
+            message: '注册成功',
+            type: 'success'
+          })
+          this.$router.push({path: '/blogs'})
+        } else {
+          this.$message({
+            duration: 1000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
     }
   }
 

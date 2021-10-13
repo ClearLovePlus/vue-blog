@@ -74,7 +74,7 @@ export default {
       } else if (!this.user.password) {
         this.$message.error('请输入密码！')
       } else {
-        this.$axios.post('http://localhost:8095/login/userName', {
+        this.$axios.post('/login/userName', {
           phone: this.user.phone,
           password: this.user.password
         }).then((res) => {
@@ -82,7 +82,6 @@ export default {
             const token = res.data.data.token
             _this.$store.commit('SET_TOKEN', token)
             _this.$store.commit('SET_USERINFO', res.data.data)
-            console.log(res.data.data)
             this.$message({
               duration: 1000,
               message: res.data.message,
