@@ -76,7 +76,7 @@ export default {
       }).then((res) => {
         let _res = res.data
         if (_res.status === 200) {
-          this.$refs.md.$img2Url(pos, '/file/download?fileName=' + _res.data)
+          this.$refs.md.$img2Url(pos, 'http://123.56.164.61:8095/file/download?fileName=' + _res.data)
         } else {
           this.$message({
             duration: 1000,

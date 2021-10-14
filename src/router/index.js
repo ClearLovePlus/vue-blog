@@ -59,7 +59,7 @@ export default new Router({
       name: 'Login',
       component: Login,
       meta: {
-        title: '统一流程平台--登录'
+        title: '登录'
       }
     },
     {
@@ -76,7 +76,7 @@ export default new Router({
       name: 'register2',
       component: Register2,
       meta: {
-        title: '统一流程平台--注册'
+        title: '注册'
       }
     }, {
       path: '/main',
