@@ -49,17 +49,16 @@ export default {
             message: '退出成功',
             type: 'success'
           })
-          _this.$router.push('/login')
+          _this.$router.push({path: '/login'})
         }
       })
     },
     login () {
       const _this = this
-      _this.$router.push('/login')
+      _this.$router.push({path: '/login'})
     },
     userCenter () {
-      const _this = this
-      _this.$router.push('/user')
+      this.$router.push({path: '/user'})
     }
   },
   created () {

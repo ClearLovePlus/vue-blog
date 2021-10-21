@@ -1,9 +1,10 @@
 import router from './router'
 import Element from 'element-ui'
+import cookie from './store/cookie'
 // 判断是否需要登录态
 router.beforeEach((to, from, next) => {
   if (to.matched.some(p => p.meta.requireAuth)) {
-    const token = localStorage.getItem('token')
+    const token = cookie.getCookie('token')
     if (token) {
       if (to.path === '/login') {
       } else {

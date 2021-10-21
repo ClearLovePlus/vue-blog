@@ -169,7 +169,7 @@ export default {
     }
   },
   created () {
-    if (!this.$store.getters.getUser) {
+    if (!this.$cookie.getCookie('token')) {
       this.$router.push({path: '/login'})
     } else {
       let userId = this.$store.getters.getUser.userId
