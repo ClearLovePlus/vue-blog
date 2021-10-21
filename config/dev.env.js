@@ -4,5 +4,5 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  VUE_APP_BASE_API: 'http://localhost:8095'
+  BASE_URL: '"http://localhost:8095"'
 })

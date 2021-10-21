@@ -2,7 +2,9 @@
   <div class="m-content">
     <div class="block">
       <el-avatar :size="50" :src="user.avatar"></el-avatar>
-      <div>{{ user.username}}</div>
+      <div>
+        <el-link @click="userCenter" title="点击修改/查看个人信息">{{ user.username}}</el-link>
+      </div>
     </div>
     <div class="maction">
       <el-link href="/login">主页</el-link>
@@ -54,6 +56,10 @@ export default {
     login () {
       const _this = this
       _this.$router.push('/login')
+    },
+    userCenter () {
+      const _this = this
+      _this.$router.push('/user')
     }
   },
   created () {

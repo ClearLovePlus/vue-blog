@@ -1,24 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import cookie from './cookie'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     token: '',
-    userInfo: JSON.parse(sessionStorage.getItem('userInfo'))
+    userInfo: JSON.parse(cookie.getCookie('userInfo'))
   },
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
-      localStorage.setItem('token', token)
+      cookie.setCookie('token', token)
     },
     SET_USERINFO: (state, userInfo) => {
       state.userInfo = userInfo
-      sessionStorage.setItem('userInfo', JSON.stringify(userInfo))
+      cookie.setCookie('userInfo', JSON.stringify(userInfo))
     },
     REMOVE_INFO: (state) => {
-      localStorage.removeItem('token')
-      sessionStorage.removeItem('userInfo')
+      cookie.clearCookie('token')
+      cookie.clearCookie('userInfo')
       state.userInfo = {}
     }
   },

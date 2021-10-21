@@ -76,7 +76,7 @@ export default {
       }).then((res) => {
         let _res = res.data
         if (_res.status === 200) {
-          this.$refs.md.$img2Url(pos, 'http://123.56.164.61:8095/file/download?fileName=' + _res.data)
+          this.$refs.md.$img2Url(pos, process.env.BASE_URL + '/file/download?fileName=' + _res.data)
         } else {
           this.$message({
             duration: 1000,
@@ -123,7 +123,7 @@ export default {
     }
   },
   created () {
-    const token = localStorage.getItem('token')
+    const token = this.$cookie.getCookie('token')
     // 加一层登录态判断
     if (token) {
       this.$axios.get('/login/loginStatus?token=' + token).then(res => {

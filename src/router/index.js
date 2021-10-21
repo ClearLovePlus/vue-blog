@@ -8,6 +8,7 @@ import Head from '../components/HeadAll'
 import BlogDetail from '../components/blog/BlogDetail'
 import BlogEdit from '../components/blog/BlogEdit'
 import BlogBoard from '../components/blog/BlogBoard'
+import UserDetails from '../components/blog/UserDetails'
 Vue.use(Router)
 
 export default new Router({
@@ -69,6 +70,15 @@ export default new Router({
       meta: {
         requireAuth: true,
         title: '编辑blog'
+      }
+    },
+    {
+      path: '/user',
+      name: 'UserDetails',
+      component: UserDetails,
+      meta: {
+        requireAuth: true,
+        title: '用户中心'
       }
     },
     {

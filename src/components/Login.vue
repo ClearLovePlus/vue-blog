@@ -52,7 +52,7 @@ export default {
     }
   },
   created () {
-    const token = localStorage.getItem('token')
+    const token = this.$cookie.getCookie('token')
     // 加一层登录态判断
     if (token) {
       this.$axios.get('/login/loginStatus?token=' + token).then(res => {

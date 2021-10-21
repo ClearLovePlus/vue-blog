@@ -1,9 +1,10 @@
+'use strict'
 import axios from 'axios'
 import Element from 'element-ui'
 import router from './router'
 import store from './store'
 
-axios.defaults.baseURL = 'http://123.56.164.61:8095'
+axios.defaults.baseURL = process.env.BASE_URL
 axios.defaults.timeout = 6000
 
 axios.interceptors.request.use(config => {

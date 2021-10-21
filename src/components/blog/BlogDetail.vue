@@ -26,6 +26,7 @@
     </div>
     <comment class="comment" :comments="commentData" ></comment>
   </div>
+    <el-backtop></el-backtop>
   </div>
 </template>
 

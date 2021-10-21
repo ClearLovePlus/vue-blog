@@ -9,9 +9,11 @@ import store from './store'
 import './permission'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import cookie from './store/cookie'
 Vue.use(Element)
 Vue.use(mavonEditor)
 Vue.prototype.$axios = axios
+Vue.prototype.$cookie = cookie
 Vue.config.productionTip = false
 /**
  * 修改title
