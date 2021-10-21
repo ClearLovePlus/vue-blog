@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="maction">
-      <el-link href="/login">主页</el-link>
+      <el-link href="/blogs">主页</el-link>
       <el-divider direction="vertical"></el-divider>
       <span>
           <el-link type="success" href="/blog/add" :disabled="!hasLogin">发表文章</el-link>

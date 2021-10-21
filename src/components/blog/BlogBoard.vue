@@ -51,7 +51,7 @@ export default {
     page (currentPage) {
       const _this = this
       let url = ''
-      if (localStorage.getItem('token') && _this.$store.getters.getUser) {
+      if (_this.$store.getters.getToken && _this.$store.getters.getUser) {
         url = '/article/getAllUserArticle?currentPage=' + currentPage + '&userId=' + _this.$store.getters.getUser.userId
       } else {
         url = '/article/getAllUserArticle?currentPage=' + currentPage
