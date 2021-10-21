@@ -97,7 +97,7 @@ export default {
             articlecontent: _this.ruleForm.articlecontent,
             author: this.$store.getters.getUser.userName,
             authorId: this.$store.getters.getUser.userId,
-            token: localStorage.getItem('token'),
+            token: this.$store.getters.getToken,
             articleid: _this.ruleForm.articleId
           }, {
             headers: {
