@@ -51,17 +51,15 @@ export default {
     }
   },
   created () {
-    const blogId = this.$route.params.blogId
-    console.log(blogId)
-    const _this = this
+    let blogId = this.$route.params.blogId
     this.$axios.get('/article/getArticleByArticleId/' + blogId).then(res => {
-      const blog = res.data.data
-      _this.blog.id = blog.articleId
-      _this.blog.title = blog.title
+      let blog = res.data.data
+      this.blog.id = blog.articleId
+      this.blog.title = blog.title
       var MardownIt = require('markdown-it')
       var md = new MardownIt()
-      _this.blog.content = md.render(blog.content)
-      _this.ownBlog = (blog.authorId === _this.$store.getters.getUser.userId)
+      this.blog.content = md.render(blog.content)
+      this.ownBlog = (blog.authorId === this.$store.getters.getUser.userId)
     })
     this.$axios.get('/comment/allComments?articleId=' + blogId).then(res => {
       if (res.status === 200) {

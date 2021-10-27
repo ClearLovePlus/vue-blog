@@ -31,7 +31,7 @@ export default new Router({
       }
     },
     {
-      path: '/blog/add',
+      path: '/add',
       name: 'BlogAdd',
       component: BlogEdit,
       meta: {
@@ -64,7 +64,7 @@ export default new Router({
       }
     },
     {
-      path: '/getArticleByArticleId/:blogId',
+      path: '/editByArticleId/:blogId',
       name: 'BlogEdit',
       component: BlogEdit,
       meta: {

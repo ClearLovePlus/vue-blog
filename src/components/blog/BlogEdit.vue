@@ -89,26 +89,25 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          const _this = this
           this.$axios.post('/article/publishArticle', {
-            id: _this.ruleForm.id,
-            articletitle: _this.ruleForm.articletitle,
-            articletabloid: _this.ruleForm.articletabloid,
-            articlecontent: _this.ruleForm.articlecontent,
+            id: this.ruleForm.id,
+            articletitle: this.ruleForm.articletitle,
+            articletabloid: this.ruleForm.articletabloid,
+            articlecontent: this.ruleForm.articlecontent,
             author: this.$store.getters.getUser.userName,
             authorId: this.$store.getters.getUser.userId,
-            token: this.$store.getters.getToken,
-            articleid: _this.ruleForm.articleId
+            token: this.$cookie.getCookie('token'),
+            articleid: this.ruleForm.articleId
           }, {
             headers: {
-              'Authorization': localStorage.getItem('token')
+              'Authorization': this.$store.getters.getToken
             }
           }).then(res => {
             console.log(res)
-            _this.$alert('操作成功', '提示', {
+            this.$alert('操作成功', '提示', {
               confirmButtonText: '确定',
               callback: action => {
-                _this.$router.push('/blogs')
+                this.$router.push('/blogs')
               }
             })
           })
@@ -123,17 +122,16 @@ export default {
     }
   },
   created () {
-    const token = this.$cookie.getCookie('token')
+    let token = this.$cookie.getCookie('token')
     // 加一层登录态判断
     if (token) {
       this.$axios.get('/login/loginStatus?token=' + token).then(res => {
         if (res.data.data === true) {
-          const blogId = this.$route.params.blogId
-          console.log(blogId)
-          const _this = this
+          let blogId = this.$route.params.blogId
+          let _this = this
           if (blogId) {
             this.$axios.get('/article/getArticleByArticleId/' + blogId).then(res => {
-              const blog = res.data.data
+              let blog = res.data.data
               _this.ruleForm.id = blog.id
               _this.ruleForm.articletitle = blog.title
               _this.ruleForm.articletabloid = blog.description

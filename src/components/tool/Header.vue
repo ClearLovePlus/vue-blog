@@ -10,7 +10,7 @@
       <el-link href="/blogs">主页</el-link>
       <el-divider direction="vertical"></el-divider>
       <span>
-          <el-link type="success" href="/blog/add" :disabled="!hasLogin">发表文章</el-link>
+          <el-link type="success" @click="add" :disabled="!hasLogin">发表文章</el-link>
         </span>
       <el-divider direction="vertical"></el-divider>
       <span v-show="!hasLogin">
@@ -40,25 +40,26 @@ export default {
   },
   methods: {
     logout () {
-      const _this = this
       this.$axios.get('logout/out?userId=' + this.$store.getters.getUser.userId).then((res) => {
         if (res.status === 200) {
-          _this.$store.commit('REMOVE_INFO')
+          this.$store.commit('REMOVE_INFO')
           this.$message({
             duration: 1000,
             message: '退出成功',
             type: 'success'
           })
-          _this.$router.push({path: '/login'})
+          this.$router.push({path: '/login'})
         }
       })
     },
     login () {
-      const _this = this
-      _this.$router.push({path: '/login'})
+      this.$router.push({path: '/login'})
     },
     userCenter () {
       this.$router.push({path: '/user'})
+    },
+    add () {
+      this.$router.push({path: '/add'})
     }
   },
   created () {

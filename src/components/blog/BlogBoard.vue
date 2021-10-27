@@ -49,19 +49,18 @@ export default {
   },
   methods: {
     page (currentPage) {
-      const _this = this
       let url = ''
-      if (_this.$store.getters.getToken && _this.$store.getters.getUser) {
-        url = '/article/getAllUserArticle?currentPage=' + currentPage + '&userId=' + _this.$store.getters.getUser.userId
+      if (this.$store.getters.getToken && this.$store.getters.getUser) {
+        url = '/article/getAllUserArticle?currentPage=' + currentPage + '&userId=' + this.$store.getters.getUser.userId
       } else {
         url = '/article/getAllUserArticle?currentPage=' + currentPage
       }
-      _this.$axios.get(url).then(res => {
+      this.$axios.get(url).then(res => {
         console.log(res)
-        _this.blogs = res.data.data.data
-        _this.currentPage = res.data.data.currentPage
-        _this.total = res.data.data.total
-        _this.pageSize = res.data.data.pageSize
+        this.blogs = res.data.data.data
+        this.currentPage = res.data.data.currentPage
+        this.total = res.data.data.total
+        this.pageSize = res.data.data.pageSize
       })
     }
   },
