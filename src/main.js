@@ -10,10 +10,12 @@ import './permission'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import cookie from './store/cookie'
+import codeWar from './store/codeWar'
 Vue.use(Element)
 Vue.use(mavonEditor)
 Vue.prototype.$axios = axios
 Vue.prototype.$cookie = cookie
+Vue.prototype.$codeWar = codeWar
 Vue.config.productionTip = false
 /**
  * 修改title
