@@ -33,7 +33,7 @@
 import menutree from '@/components/menutree'
 export default {
   name: 'menutree',
-  data() {
+  data () {
     return {
       menu_data: {},
       name: 'one'
@@ -43,7 +43,7 @@ export default {
     menutree: menutree
   },
   props: ['data', 'className'],
-  mounted() {
+  mounted () {
   },
   methods: {
     getImgUrl(icon) {

@@ -17,7 +17,6 @@
             </el-card>
           </el-timeline-item>
         </el-timeline>
-
         <el-pagination class="mpage"
                        background
                        layout="prev, pager, next"
