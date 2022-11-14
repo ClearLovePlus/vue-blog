@@ -100,10 +100,132 @@ function bouncesBall (height, bouncesPercent, windowsHeight) {
   return count
 }
 
+/**
+ * Move the first letter of each word to the end of it, then add "ay" to the end of the word. Leave punctuation marks untouched.
+ * example : pigIt('Pig latin is cool'); // igPay atinlay siay oolcay
+ *           pigIt('Hello world !');     // elloHay orldway !
+ * @param str
+ * @returns {string}
+ */
+// eslint-disable-next-line no-unused-vars
+function pigIt (str) {
+  var containSpecial = RegExp(
+    /[(\ )(\~)(\!)(\@)(\#)(\$)(\%)(\^)(\&)(\*)(\()(\))(\-)(\+)(\=)(\[)(\])(\{)(\})(\|)(\\)(\;)(\:)(\')(\")(\,)(\.)(\/)(\<)(\>)(\?)(\)]+/
+  )
+  let splits = str.split(' ')
+  let result = ''
+  let var1 = ''
+  splits.forEach(p => {
+    var1 = p.substr(0, 1)
+    if (!containSpecial.test(p)) {
+      var1 = var1 + 'ay'
+    }
+    let var2 = p.substr(1, p.length - 1)
+    result = result + ' ' + var2 + var1
+  })
+  return result.substr(1, result.length)
+}
+
+/**
+ * Write a function that takes in a string of one or more words, and returns the same string,
+ * but with all five or more letter words reversed (Just like the name of this Kata).
+ * Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
+ * @param string
+ * @returns {string}
+ */
+function spinWords (word) {
+  return word.split(' ').map(function (item) {
+    if (item.length >= 5) {
+      return item.split('').reverse().join('')
+    } else {
+      return item
+    }
+  }).join(' ')
+}
+
+/**
+ * Given a string of words, you need to find the highest scoring word.
+
+ Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc.
+
+ You need to return the highest scoring word as a string.
+
+ If two words score the same, return the word that appears earliest in the original string.
+
+ All letters will be lowercase and all inputs will be valid.
+ * @param x
+ * @returns {*}
+ */
+
+function high (x) {
+  let num = 96
+  let words = x.split(' ')
+  let socres = new Array(words.length)
+  for (let i = 0; i < words.length; i++) {
+    socres[i] = 0
+    words[i].split('').forEach(p => {
+      socres[i] = socres[i] + p.charCodeAt() - num
+    })
+  }
+  let max = 0
+  let maxScore = socres[0]
+  for (let k = 0; k < socres.length; k++) {
+    if (maxScore < socres[k]) {
+      maxScore = socres[k]
+      max = k
+    }
+  }
+  return words[max]
+}
+
+function high1(x) {
+  let as = x.split(' ').map(s => s.split('').reduce((a, b) => a + b.charCodeAt(0) - 96, 0))
+  return x.split(' ')[as.indexOf(Math.max(...as))]
+}
+
+// eslint-disable-next-line no-unused-vars
+function arrayDiff (a, b) {
+  return a.filter(p => !b.includes(p))
+}
+
+/***
+ *  斐波那契 数列
+ * @param n
+ * @returns {number|*}
+ */
+function fib (n) {
+  if (n === 0) {
+    return 0
+  }
+  if (n === 1) {
+    return 1
+  }
+  return fib(n - 1) + fib(n - 2)
+}
+
+/**
+ * Product of consecutive Fib numbers [codeWar]
+ * @param prod
+ * @returns {any[]}
+ */
+// eslint-disable-next-line no-unused-vars
+function productFib (prod) {
+  let i = 0
+  let result = new Array(3)
+  while (fib(i) * fib(i + 1) < prod) {
+    i++
+  }
+  result[0] = fib(i)
+  result[1] = fib(i + 1)
+  result[2] = fib(i) * fib(i + 1) === prod
+  return result
+}
 export default {
   toCamelCase,
   getCount,
   songDecoder,
   SquareDigit,
-  bouncesBall
+  bouncesBall,
+  pigIt,
+  fib
 }
