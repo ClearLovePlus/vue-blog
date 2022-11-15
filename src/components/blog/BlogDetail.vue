@@ -43,7 +43,8 @@ export default {
       blog: {
         id: '',
         title: '',
-        content: ''
+        content: '',
+        authorId: ''
       },
       ownBlog: false,
       textarea: '',
@@ -56,6 +57,7 @@ export default {
       let blog = res.data.data
       this.blog.id = blog.articleId
       this.blog.title = blog.title
+      this.blog.authorId = blog.authorId
       var MardownIt = require('markdown-it')
       var md = new MardownIt()
       this.blog.content = md.render(blog.content)
@@ -80,7 +82,8 @@ export default {
       this.$axios.post('/comment/addComments', {
         articleId: this.$route.params.blogId,
         content: this.textarea,
-        fromId: this.$store.getters.getUser.userId
+        fromId: this.$store.getters.getUser.userId,
+        toId: this.blog.authorId
       }).then(res => {
         if (res.status === 200) {
           if (res.data.data === true) {
